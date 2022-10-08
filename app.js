@@ -1,12 +1,12 @@
 // app.js
-import { ForceSimulation } from "@livereader/graphly-d3";
-import "@livereader/graphly-d3/style.css";
+import { ForceSimulation } from "./nodemodules/@livereader/graphly-d3";
+import "./nodemodules@livereader/graphly-d3/style.css";
 import Hexagon from "./hexagon";
 
 const mySVG = document.getElementById("mySVG");
 const simulation = new ForceSimulation(mySVG);
 simulation.templateStore.add("hexagon", Hexagon);
-
+console.log("test")
 const graph = {
 	nodes: [
 		{
