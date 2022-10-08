@@ -1,6 +1,6 @@
 // app.js
-import { ForceSimulation } from "./nodemodules/@livereader/graphly-d3";
-import "./nodemodules@livereader/graphly-d3/style.css";
+import { ForceSimulation } from "./node_modules/@livereader/graphly-d3";
+import "./node_modules@livereader/graphly-d3/style.css";
 import Hexagon from "./hexagon";
 
 const mySVG = document.getElementById("mySVG");
