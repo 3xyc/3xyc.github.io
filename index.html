@@ -1,79 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <title>Gamedev Canvas Workshop - lesson 2: move the ball</title>
-    <style>* { padding: 0; margin: 0; } canvas { background: #eee; display: block; margin: 0 auto; }</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Your Name | Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        section {
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 0.5em;
+        }
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        .resume-link {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .resume-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <h1>Welcome to My Portfolio</h1>
+    </header>
 
-<canvas id="myCanvas" width="100%" height="100%"></canvas>
+    <section>
+        <h1>Hello, I'm [Your Name]</h1>
+        <p>
+            I am a [Your Profession] with experience in [your expertise areas].
+            My skills include [list some of your top skills or technologies].
+        </p>
+        <p>
+            Feel free to explore my work, and if you'd like to know more, you can check out my résumé below.
+        </p>
 
-<script>
-    var canvas = document.getElementById("myCanvas");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    var ctx = canvas.getContext("2d");
-    var x = canvas.width/2;
-    var y = canvas.height-30;
-    var dx = 2;
-    var dy = -2;
-    let leftPressed = false;
-    let rightPressed = false;
-    let upPressed = false;
-    let downPressed = false;
-
-    function drawBall() {
-        ctx.beginPath();
-        ctx.arc(x, y, 10, 0, Math.PI*2);
-        ctx.fillStyle = "#0095DD";
-        ctx.fill();
-        ctx.closePath();
-    }
-
-    function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        drawBall();
-        if (rightPressed){
-          x += dx
-        }else if(leftPressed){
-          x -= dx
-        }else if(upPressed){
-          y += dy
-        }else if(downPressed){
-          y -= dy
-        }
-    }
-    document.addEventListener("keydown", keyDownHandler, false);
-    document.addEventListener("keyup", keyUpHandler, false);
-
-    function keyDownHandler(e) {
-      if (e.key === "Right" || e.key === "ArrowRight") {
-        rightPressed = true;
-      } else if (e.key === "Left" || e.key === "ArrowLeft") {
-        leftPressed = true;
-      }
-      else if (e.key === "up" || e.key === "ArrowUp") {
-        upPressed = true;
-      } else if (e.key === "down" || e.key === "ArrowDown") {
-        downPressed = true;
-      }
-    }
-
-    function keyUpHandler(e) {
-      if (e.key === "Right" || e.key === "ArrowRight") {
-        rightPressed = false;
-      } else if (e.key === "Left" || e.key === "ArrowLeft") {
-        leftPressed = false;
-      } else if(e.key === "Up" || e.key === "ArrowUp"){
-        upPressed = false;
-      }else if(e.key === "Down" || e.key === "ArrowDown"){
-        downPressed = false;
-      }
-    }
-
-    setInterval(draw, 10);
-</script>
-
+        <a href="resume.pdf" class="resume-link" target="_blank">Download My Résumé</a>
+    </section>
 </body>
 </html>
