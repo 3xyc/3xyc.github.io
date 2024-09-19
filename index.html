@@ -46,7 +46,7 @@ const simulation = d3.forceSimulation(nodes)
       context.beginPath();
       context.moveTo(d.x + d.r, d.y);
       context.arc(d.x, d.y, d.r, 0, 2 * Math.PI);
-      context.fillStyle = color("red");
+      context.fillStyle = "red";
       context.fill();
     }
     context.restore();
