@@ -29,6 +29,7 @@ const simulation = d3.forceSimulation(nodes)
       .force("collide", d3.forceCollide().radius(d => d.r + 1).iterations(3))
       .on("tick", ticked);
 
+
  d3.select(context.canvas)
       .on("touchmove", event => event.preventDefault())
       .on("pointermove", pointermoved);
@@ -44,6 +45,7 @@ const simulation = d3.forceSimulation(nodes)
   }
 
   function ticked() {
+      console.log(nodes[0].fx)
     context.clearRect(0, 0, 1000, 1000);
     context.save();
     context.translate(width / 2, height / 2);
