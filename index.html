@@ -15,9 +15,9 @@ const marginBottom = 30;
 const marginLeft = 40;
 
 const nodes = [{}, {}];
-const simulation = forceSimulation(nodes)
-    .force("x", forceX())
-    .force("collide", forceCollide(5))
+const simulation = d3.forceSimulation(nodes)
+    .force("x", d3.forceX())
+    .force("collide", d3.forceCollide(5))
     .on("tick", () => console.log(nodes[0].x));
 
 // Declare the x (horizontal position) scale.
