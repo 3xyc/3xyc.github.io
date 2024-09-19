@@ -7,13 +7,14 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
 
 var nodes =  [
-    {id: "Python", x:100, y:100, r:20},
-    {id: "Java", x:500, y:600, r:20},
+
+    {id: "Java", x:500, y:600, r:20, c:"red"},
+    {id: "Python", x:100, y:100, r:20, c:"blue"},
     ]
 
 // Declare the chart dimensions and margins.
-const width = 640;
-const height = 400;
+const width = 1000;
+const height = 1000;
 
 var canvas = document.getElementById('d3canvas')
 
@@ -48,7 +49,7 @@ const simulation = d3.forceSimulation(nodes)
       context.beginPath();
       context.moveTo(d.x + d.r, d.y);
       context.arc(d.x, d.y, d.r, 0, 2 * Math.PI);
-      context.fillStyle = "red";
+      context.fillStyle = d.c;
       context.fill();
     }
     context.restore();
