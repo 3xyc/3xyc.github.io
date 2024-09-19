@@ -4,14 +4,14 @@
     <div id="container"></div>
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
-var data = Array.from({length: 200}, (_, i) => ({r: r(), group: i && (i % n + 1)}));
+var data = Array.from({length: 10}, (_, i) => ({r: r(), group: i && (i % n + 1), x:i*75, y:i*75, r: 20, c:"red"}));
 
 var nodes =  [
-
     {id: "Java", x:500, y:600, r:20, c:"red"},
     {id: "Python", x:100, y:100, r:20, c:"blue"},
     ]
 
+nodes =data
 
 // Declare the chart dimensions and margins.
 const width = 1000;
