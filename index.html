@@ -34,8 +34,6 @@ const simulation = d3.forceSimulation(nodes)
       .on("touchmove", event => event.preventDefault())
       .on("pointermove", pointermoved);
 
-  invalidation.then(() => simulation.stop());
-
   function pointermoved(event) {
     const [x, y] = d3.pointer(event);
     nodes[0].fx = x - width / 2;
