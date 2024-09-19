@@ -16,8 +16,6 @@ var data = { "skills": [
 const width = 640;
 const height = 400;
 
-
-const context = DOM.context2d(width, height);
 const nodes = data.map(Object.create);
 
 const simulation = d3.forceSimulation(nodes)
@@ -29,8 +27,12 @@ const simulation = d3.forceSimulation(nodes)
       .force("charge", d3.forceManyBody().strength((d, i) => i ? 0 : -width * 2 / 3))
       .on("tick", ticked);
 
-  d3.select(context.canvas)
-      .on("touchmove", event => event.preventDefault())
+
+    const context = d3.select("#d3div").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+      context.on("touchmove", event => event.preventDefault())
       .on("pointermove", pointermoved);
 
   invalidation.then(() => simulation.stop());
@@ -49,13 +51,6 @@ const simulation = d3.forceSimulation(nodes)
     }
     context.restore();
   }
-
-// Create the SVG container.
-const svg = d3.select("#d3div").append("svg")
-    .attr("width", width)
-    .attr("height", height);
-
-svg.append(context)
 
 </script>
 
