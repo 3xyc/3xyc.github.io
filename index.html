@@ -26,10 +26,12 @@ const simulation = d3.forceSimulation(nodes)
       .on("tick", ticked);
 
 
-    const context = d3.select("#d3div").append("canvas")
+    const canvas = d3.select("#d3canvas")
     .attr("width", width)
     .attr("height", height);
 
+
+    const context = canvas.getContext("2d");
       context.on("touchmove", event => event.preventDefault())
       .on("pointermove", pointermoved);
 
@@ -123,7 +125,7 @@ const simulation = d3.forceSimulation(nodes)
 
         <a href="MovingBall.html" class="resume-link" target="_blank">MovingBall</a>
 
-        <div id='d3div'> test  hallo</div>
+        <canvas id='d3canvas'></canvas>
     </section>
 </body>
 </html>
