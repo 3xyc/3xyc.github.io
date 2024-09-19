@@ -19,8 +19,7 @@ const height = 400;
 var canvas = document.getElementById('d3canvas')
 
 var context = canvas.getContext("2d");
-  context.on("touchmove", event => event.preventDefault())
-  .on("pointermove", pointermoved);
+
 
 const simulation = d3.forceSimulation(nodes)
       .alphaTarget(0.3) // stay hot
