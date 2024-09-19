@@ -40,9 +40,9 @@ const simulation = d3.forceSimulation(nodes)
   }
 
   function ticked() {
-    context.clearRect(0, 0, width, height);
-    context.fillRect(10,10,10,10)
+    context.clearRect(0, 0, 1000, 1000);
     context.save();
+
     for (let i = 1; i < nodes.length; ++i) {
       const d = nodes[i];
       context.beginPath();
