@@ -3,8 +3,14 @@
 <head>
     <div id="container"></div>
 <script type="module">
-
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+
+var width = $("#d3div").width(),
+    height = 400;
+
+var svg = d3.select("#d3div").append("svg")
+    .attr("width", width)
+    .attr("height", height);
 
 // Declare the chart dimensions and margins.
 const width = 640;
@@ -14,11 +20,6 @@ const marginRight = 20;
 const marginBottom = 30;
 const marginLeft = 40;
 
-const nodes = [{}, {}];
-const simulation = d3.forceSimulation(nodes)
-    .force("x", d3.forceX())
-    .force("collide", d3.forceCollide(5))
-    .on("tick", () => console.log(nodes[0].x));
 
 // Declare the x (horizontal position) scale.
 const x = d3.scaleUtc()
@@ -45,8 +46,7 @@ svg.append("g")
     .attr("transform", `translate(${marginLeft},0)`)
     .call(d3.axisLeft(y));
 
-// Append the SVG element.
-container.append(svg.node());
+
 </script>
 
     <meta charset="UTF-8">
@@ -119,6 +119,8 @@ container.append(svg.node());
         </p>
 
         <a href="MovingBall.html" class="resume-link" target="_blank">MovingBall</a>
+
+        <d3div></d3div>
     </section>
 </body>
 </html>
