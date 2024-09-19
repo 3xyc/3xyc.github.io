@@ -32,6 +32,7 @@ const simulation = d3.forceSimulation(nodes)
 
   function ticked() {
     context.clearRect(0, 0, width, height);
+    context.fillRect(10,10,10,10)
     context.save();
     context.translate(width / 2, height / 2);
     for (let i = 1; i < nodes.length; ++i) {
@@ -118,7 +119,7 @@ const simulation = d3.forceSimulation(nodes)
 
         <a href="MovingBall.html" class="resume-link" target="_blank">MovingBall</a>
 
-        <canvas id='d3canvas'></canvas>
+        <canvas height=300, width= 300, id='d3canvas'></canvas>
     </section>
 </body>
 </html>
