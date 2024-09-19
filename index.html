@@ -14,6 +14,12 @@ const marginRight = 20;
 const marginBottom = 30;
 const marginLeft = 40;
 
+const nodes = [{}, {}];
+const simulation = forceSimulation(nodes)
+    .force("x", forceX())
+    .force("collide", forceCollide(5))
+    .on("tick", () => console.log(nodes[0].x));
+
 // Declare the x (horizontal position) scale.
 const x = d3.scaleUtc()
     .domain([new Date("2023-01-01"), new Date("2024-01-01")])
