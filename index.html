@@ -40,7 +40,7 @@ const simulation = d3.forceSimulation(nodes)
       d.fx = x - width / 2;
       d.fy = y - height / 2;
     }
-    console.log(x, y);
+    console.log(nodes[0].x, nodes[1].x);
   }
 
   function ticked() {
