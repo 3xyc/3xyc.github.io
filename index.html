@@ -16,7 +16,7 @@ nodes =data
 
 // Declare the chart dimensions and margins.
 var canvas = document.getElementById('d3canvas')
-var context = canvas.getContext("2d");
+
 var dimension = [document.documentElement.clientWidth, document.documentElement.clientHeight];
 
 const width = dimension[0];
@@ -114,7 +114,7 @@ const simulation = d3.forceSimulation(nodes)
     <header>
         <h1>Welcome to My Portfolio</h1>
     </header>
-
+    <canvas id='d3canvas'>
     <section>
         <h1>Hello, I'm Fabian</h1>
         <p>
@@ -136,7 +136,7 @@ const simulation = d3.forceSimulation(nodes)
 
         <a href="MovingBall.html" class="resume-link" target="_blank">MovingBall</a>
 
-        <canvas id='d3canvas'></canvas>
     </section>
+    </canvas>
 </body>
 </html>
