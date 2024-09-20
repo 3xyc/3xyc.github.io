@@ -15,14 +15,14 @@ var nodes =  [
 nodes =data
 
 // Declare the chart dimensions and margins.
-const width = 1000;
-const height = 1000;
-
 var canvas = document.getElementById('d3canvas')
 var context = canvas.getContext("2d");
 var dimension = [document.documentElement.clientWidth, document.documentElement.clientHeight];
-canvas.width = dimension[0];
-canvas.height = dimension[1];
+
+const width = dimension[0];
+const height = dimension[1];
+canvas.width = width;
+canvas.height = height;
 
 const simulation = d3.forceSimulation(nodes)
       .alphaTarget(0.3) // stay hot
