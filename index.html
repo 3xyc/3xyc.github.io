@@ -49,7 +49,7 @@ const simulation = d3.forceSimulation(nodes)
 
   function ticked() {
       console.log(nodes[0].fx)
-    context.clearRect(0, 0, 1000, 1000);
+    context.clearRect(0, 0, width,height);
     context.save();
     context.translate(width / 2, height / 2);
     for (let i = 1; i < nodes.length; ++i) {
