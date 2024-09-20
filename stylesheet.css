@@ -1,0 +1,124 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    opacity: 0.95;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+canvas {
+    z-index: -1;
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+section {
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    z-index: 1;
+    position: absolute;
+    pointer-events: none;
+<!-- https: / / stackoverflow . com /questions/ 1009753 / pass-mouse-events-through-absolutely-positioned-element -->
+
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+}
+
+p {
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.page-link {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    pointer-events: all;
+}
+
+.page-link:hover {
+    background-color: #0056b3;
+}
+
+.content-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: white;
+    margin: 20px auto;
+    max-width: 1000px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.content-text {
+    flex: 1;
+    padding-right: 20px;
+}
+
+.content-text h2 {
+    margin-bottom: 10px;
+    font-size: 1.8em;
+}
+
+.content-text p {
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.content-text a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.content-text a:hover {
+    text-decoration: underline;
+}
+
+.content-image {
+    flex: 1;
+    text-align: right;
+}
+
+.content-image img {
+    max-width: 400px;
+    border-radius: 8px;
+}
+
+@media screen and (max-width: 768px) {
+    .content-block {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .content-text {
+        padding-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .content-image img {
+        max-width: 100%;
+    }
+}
