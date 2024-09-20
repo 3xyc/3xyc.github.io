@@ -17,6 +17,7 @@ nodes =data
 // Declare the chart dimensions and margins.
 var canvas = document.getElementById('d3canvas')
 var context = canvas.getContext("2d");
+context.alpha = true;
 var dimension = [document.documentElement.clientWidth, document.documentElement.clientHeight];
 
 const width = dimension[0];
