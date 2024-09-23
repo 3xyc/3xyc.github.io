@@ -1,0 +1,86 @@
+{
+  "interests": [
+    [
+      {
+        "group": "coding",
+        "id": "Java",
+        "x": 500,
+        "y": 600,
+        "r": 40,
+        "c": "CadetBlue"
+      },
+      {
+        "group": "coding",
+        "id": "Python",
+        "x": 550,
+        "y": 550,
+        "r": 60,
+        "c": "CadetBlue"
+      },
+      {
+        "group": "coding",
+        "id": "WebDev",
+        "x": 550,
+        "y": 580,
+        "r": 35,
+        "c": "CadetBlue"
+      },
+      {
+        "group": "data",
+        "id": "ML",
+        "x": 580,
+        "y": 550,
+        "r": 50,
+        "c": "BurlyWood"
+      },{
+        "group": "data",
+        "id": "KI",
+        "x": 550,
+        "y": 550,
+        "r": 50,
+        "c": "BurlyWood"
+      },
+
+      {
+        "group": "music",
+        "id": "Piano",
+        "x": 200,
+        "y": 200,
+        "r": 50,
+        "c": "DarkKhaki"
+      },
+      {
+        "group": "music",
+        "id": "Saxophon",
+        "x": 200,
+        "y": 200,
+        "r": 40,
+        "c": "DarkKhaki"
+      },
+      {
+        "group": "music",
+        "id": "Transcription",
+        "x": 200,
+        "y": 400,
+        "r": 50,
+        "c": "DarkKhaki"
+      },
+      {
+      "group": "math",
+        "id": "Timeseries",
+        "x": 200,
+        "y": 400,
+        "r": 50,
+        "c": "violet"
+      },
+      {
+      "group": "math",
+        "id": "Interpolation",
+        "x": 200,
+        "y": 400,
+        "r": 50,
+        "c": "violet"
+      }
+    ]
+  ]
+}
