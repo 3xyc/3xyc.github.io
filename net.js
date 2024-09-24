@@ -38,7 +38,7 @@ function add_edge(source, target) {
 }
 
 
-function rek(size, x = 0, y = 0, o = 0) {
+function create_hex_net(size) {
     let n = 3 + size * 4
     let m = 4 + size * 4
     for (let lr = 0; lr < Math.ceil(n / 2); lr++) {
@@ -139,13 +139,13 @@ function rek(size, x = 0, y = 0, o = 0) {
     }
 }
 
-rek(12)
+create_hex_net(12)
 console.log(nodeMap)
 console.log(nodes)
 
 const simulation = d3.forceSimulation(nodes)
-      .force("charge", d3.forceManyBody().strength(-30))
-      .force("link", d3.forceLink(links).strength(1).distance(20).iterations(10))
+      .force("charge", d3.forceManyBody().strength(-4))
+      .force("link", d3.forceLink(links).strength(1).distance(30).iterations(10))
       .on("tick", ticked);
 
   const drag = d3.drag()
