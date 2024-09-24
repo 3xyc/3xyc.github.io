@@ -1,21 +1,19 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
-// Declare the chart dimensions and margins.
-var canvas = document.getElementById('d3canvas')
-var context = canvas.getContext("2d");
-context.alpha = true;
+
+
 var dimension = [document.documentElement.clientWidth, document.documentElement.clientHeight];
 const width = dimension[0];
 const height = dimension[1];
-canvas.width = width;
-canvas.height = height;
 
-const n = 3; // Number of hexagons along one dimension
-const hexRadius = 30; // Radius of each hexagon
 
+
+const svg = d3.select("#d3svg");
 const nodes = [];
 const links = [];
 const nodeMap = new Map();
+
+
 
 function add_node(key) {
     let node = {index: nodes.length, key};
@@ -148,34 +146,29 @@ const simulation = d3.forceSimulation(nodes)
       .force("link", d3.forceLink(links).strength(1).distance(30).iterations(10))
       .on("tick", ticked);
 
-  const drag = d3.drag()
-      .subject(({x, y}) => simulation.find(x - width / 2, y - height / 2, 40))
-      .on("start", dragstarted)
-      .on("drag", dragged)
-      .on("end", dragended);
+// Create SVG elements for links and nodes
+const link = svg.append("g")
+  .attr("class", "links")
+  .selectAll("line")
+  .data(links)
+  .enter().append("line")
+  .attr("stroke", "#aaa")
+  .attr("stroke-width", 2);
+
+const node = svg.append("g")
+  .attr("class", "nodes")
+  .selectAll("circle")
+  .data(nodes)
+  .enter().append("circle")
+  .attr("r", 3)
+  .attr("fill", "#000")
+  .attr("stroke", "#fff")
+  .attr("stroke-width", 1.5);
 
 
-  function ticked() {
-    context.clearRect(0, 0, width, height);
-    context.save();
-    context.translate(width / 2, height / 2);
-    context.beginPath();
-    for (const d of links) {
-      context.moveTo(d.source.x, d.source.y);
-      context.lineTo(d.target.x, d.target.y);
-    }
-    context.strokeStyle = "#aaa";
-    context.stroke();
-    context.beginPath();
-    for (const d of nodes) {
-      context.moveTo(d.x + 3, d.y);
-      context.arc(d.x, d.y, 3, 0, 2 * Math.PI);
-    }
-    context.fill();
-    context.strokeStyle = "#fff";
-    context.stroke();
-    context.restore();
-  }
+
+
+
 
   function dragstarted(event) {
     if (!event.active) simulation.alphaTarget(0.3).restart();
@@ -194,4 +187,27 @@ const simulation = d3.forceSimulation(nodes)
     event.subject.fy = null;
   }
 
-d3.select(context.canvas).call(drag).node();
+    const drag = d3.drag()
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended);
+
+  // Add a drag behavior.
+  node.call(drag);
+
+
+
+// Update the ticked function to position the nodes and links
+function ticked() {
+  // Update link positions
+  link
+    .attr("x1", d => d.source.x)
+    .attr("y1", d => d.source.y)
+    .attr("x2", d => d.target.x)
+    .attr("y2", d => d.target.y);
+
+  // Update node positions
+  node
+    .attr("cx", d => d.x)
+    .attr("cy", d => d.y);
+}

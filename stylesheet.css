@@ -14,13 +14,6 @@ header {
     text-align: center;
 }
 
-canvas {
-    z-index: -1;
-    position: fixed;
-    top: 0;
-    left: 0;
-}
-
 section {
     padding: 20px;
     max-width: 900px;
@@ -29,7 +22,12 @@ section {
     position: absolute;
     pointer-events: none;
 <!-- https: / / stackoverflow . com /questions/ 1009753 / pass-mouse-events-through-absolutely-positioned-element -->
+}
 
+/* Ensure the SVG can still receive pointer events */
+svg {
+    position: relative;
+    pointer-events: all; /* Allow pointer events so dragging works */
 }
 
 h1 {
