@@ -1,5 +1,5 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
-import {create_hex_net} from "./graph_creation.js"
+import {create_hex_net, create_hex_ball} from "./graph_creation.js"
 
 var dimension = [document.documentElement.clientWidth, document.documentElement.clientHeight];
 const width = dimension[0];
@@ -8,14 +8,17 @@ const height = dimension[1];
 
 const svg = d3.select("#d3svg");
 
-const hex_net = create_hex_net(12)
+//const hex_net = create_hex_net(12)
+const hex_net = create_hex_ball(10);
+
 const nodes = hex_net["nodes"];
 const links = hex_net["links"];
 
 
 const simulation = d3.forceSimulation(nodes)
-    .force("charge", d3.forceManyBody().strength(-4))
-    .force("link", d3.forceLink(links).strength(1).distance(30).iterations(10))
+    .force("charge", d3.forceManyBody().strength(-30))
+    .force("link", d3.forceLink(links).strength(1).distance(20).iterations(10))
+    //.force("center", d3.forceCenter(0, 0).strength(2))
     .on("tick", ticked);
 
 // Update the ticked function to position the nodes and links

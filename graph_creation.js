@@ -1,7 +1,3 @@
-const nodeMap = new Map();
-const nodes = [];
-const links = [];
-
 function add_node(key) {
     let node = {index: nodes.length, key};
     console.log("node: " + key + " added!")
@@ -22,9 +18,17 @@ function add_edge(source, target) {
     console.log("edge: " + source + "->" + target + " added")
 }
 
+const nodeMap = new Map();
+const nodes = [];
+const links = [];
 
 
-function create_hex_net(size) {
+export function create_hex_net(size) {
+    // reset arrays and maps
+    nodeMap.clear()
+    nodes.splice(0, nodes.length)
+    links.splice(0, nodes.length)
+
     let n = 3 + size * 4
     let m = 4 + size * 4
     for (let lr = 0; lr < Math.ceil(n / 2); lr++) {
@@ -127,5 +131,62 @@ function create_hex_net(size) {
     return {"links": links, "nodes": nodes}
 }
 
+function create_hex_ball_contour(size, depth = 0, node_count = 0, new_nodes = 6) {
+    if (depth > size) {
+        return
+    }
+    console.log(depth)
+    console.log(new_nodes)
+    for (let i = node_count; i < node_count + new_nodes; i++) {
+        add_node(i)
+        if (depth === 0) {
+            if (i > node_count) {
+                add_edge(i, i - 1)
+                if (i === node_count + new_nodes - 1) {
+                    add_edge(i, node_count)
+                }
+            }
+        } else if (depth % 2 === 1) {
+            add_edge(i, i - new_nodes)
+        } else if (depth % 2 === 0) {
+            console.log()
+            if (depth < 100){
+                add_edge(i, node_count-(new_nodes/2) + Math.floor((i-node_count) / 2))
 
-export {create_hex_net};
+            }
+
+            if (i % 2 === 0 && i > node_count) {
+                add_edge(i, i - 1)
+
+            }if (i === node_count+new_nodes -1){
+                    console.log(i, node_count, new_nodes)
+                    add_edge(i, node_count)
+                }
+
+
+        }
+    }
+
+    node_count = node_count + new_nodes
+    let start = node_count
+    if (depth % 2 === 0) {
+        new_nodes = new_nodes
+    } else if (depth % 2 === 1) {
+        new_nodes = 2 * new_nodes
+    }
+
+    create_hex_ball_contour(size, depth + 1, node_count, new_nodes)
+
+}
+
+
+export function create_hex_ball(size) {
+    // reset arrays and maps
+    nodeMap.clear()
+    nodes.splice(0, nodes.length)
+    links.splice(0, nodes.length)
+    create_hex_ball_contour(size)
+
+    return {"links": links, "nodes": nodes}
+}
+
