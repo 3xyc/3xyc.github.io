@@ -14,20 +14,13 @@ header {
     text-align: center;
 }
 
+
+
 section {
     padding: 20px;
-    max-width: 900px;
+    max-width: 50%;
     margin: 0 auto;
-    z-index: 1;
-    position: absolute;
-    pointer-events: none;
-<!-- https: / / stackoverflow . com /questions/ 1009753 / pass-mouse-events-through-absolutely-positioned-element -->
-}
-
-/* Ensure the SVG can still receive pointer events */
-svg {
-    position: relative;
-    pointer-events: all; /* Allow pointer events so dragging works */
+    pointer-events: all;
 }
 
 h1 {
@@ -40,6 +33,20 @@ p {
     line-height: 1.6;
 }
 
+/* Use flexbox to position the section and svg side by side */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    padding: 20px;
+}/* The SVG element takes 50% of the available width */
+svg {
+    flex: 1;
+}
+
+
+
 .page-link {
     display: inline-block;
     background-color: #007bff;
@@ -48,7 +55,6 @@ p {
     text-decoration: none;
     border-radius: 5px;
     margin-top: 20px;
-    pointer-events: all;
 }
 
 .page-link:hover {
@@ -104,18 +110,15 @@ p {
     border-radius: 8px;
 }
 
-@media screen and (max-width: 768px) {
-    .content-block {
-        flex-direction: column;
-        text-align: center;
+    /* Media query for responsiveness */
+@media (max-width: 800px) {
+    .container {
+        flex-direction: column; /* Stack vertically on small screens */
+        align-items: center;
     }
 
-    .content-text {
-        padding-right: 0;
-        margin-bottom: 20px;
-    }
-
-    .content-image img {
-        max-width: 100%;
+    .text-section,
+    svg {
+        max-width: 100%; /* Full width for both elements */
     }
 }

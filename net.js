@@ -18,7 +18,7 @@ const links = hex_net["links"];
 const simulation = d3.forceSimulation(nodes)
     .force("charge", d3.forceManyBody().strength(-30))
     .force("link", d3.forceLink(links).strength(1).distance(20).iterations(10))
-    //.force("center", d3.forceCenter(0, 0).strength(2))
+    .force("center", d3.forceCenter(20, 40).strength(1))
     .on("tick", ticked);
 
 // Update the ticked function to position the nodes and links
