@@ -150,10 +150,9 @@ function create_hex_ball_contour(size, depth = 0, node_count = 0, new_nodes = 6)
             add_edge(i, i - new_nodes)
         } else if (depth % 2 === 0) {
             console.log()
-            if (depth < 100){
-                add_edge(i, node_count-(new_nodes/2) + Math.floor((i-node_count) / 2))
 
-            }
+            add_edge(i, node_count-(new_nodes/2) + Math.floor((i-node_count) / 2))
+
 
             if (i % 2 === 0 && i > node_count) {
                 add_edge(i, i - 1)
@@ -168,7 +167,6 @@ function create_hex_ball_contour(size, depth = 0, node_count = 0, new_nodes = 6)
     }
 
     node_count = node_count + new_nodes
-    let start = node_count
     if (depth % 2 === 0) {
         new_nodes = new_nodes
     } else if (depth % 2 === 1) {
