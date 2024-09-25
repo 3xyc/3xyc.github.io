@@ -9,15 +9,35 @@ const height = dimension[1];
 const svg = d3.select("#d3svg");
 
 //const hex_net = create_hex_net(12)
-const hex_net = create_hex_ball(4);
+const hex_net = create_hex_ball(2);
+const graph = {"nodes": hex_net["nodes"], "links": hex_net["links"]}
 
-const nodes = hex_net["nodes"];
-const links = hex_net["links"];
+// Create SVG elements for links and nodes
+const link = svg.append("g")
+    .attr("class", "links")
+    .selectAll("line")
+    .data(graph.links)
+    .enter().append("line")
+    .attr("stroke", "#aaa")
+    .attr("stroke-width", 2);
 
+const node = svg.selectAll("g")
+    .data(graph.nodes)
+    .enter().append("g")
+    .attr("class", "node")
+    .append("circle")
+    .attr("r", 3)
+    .attr("fill", "#000")
+    .attr("stroke", "#fff")
+    .attr("stroke-width", 1.5);
+const text = svg.selectAll("g").append("text")
+    .text(function (d) { return d.key; });
 
-const simulation = d3.forceSimulation(nodes)
+console.log(node)
+
+const simulation = d3.forceSimulation(graph.nodes)
     .force("charge", d3.forceManyBody().strength(-30))
-    .force("link", d3.forceLink(links).strength(1).distance(20).iterations(10))
+    .force("link", d3.forceLink(graph.links).strength(1).distance(20).iterations(10))
     //.force("center", d3.forceCenter(20, 40).strength(1))
     .on("tick", ticked);
 
@@ -34,26 +54,11 @@ function ticked() {
     node
         .attr("cx", d => d.x)
         .attr("cy", d => d.y);
+
+text.attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
 }
 
-// Create SVG elements for links and nodes
-const link = svg.append("g")
-    .attr("class", "links")
-    .selectAll("line")
-    .data(links)
-    .enter().append("line")
-    .attr("stroke", "#aaa")
-    .attr("stroke-width", 2);
-
-const node = svg.append("g")
-    .attr("class", "nodes")
-    .selectAll("circle")
-    .data(nodes)
-    .enter().append("circle")
-    .attr("r", 3)
-    .attr("fill", "#000")
-    .attr("stroke", "#fff")
-    .attr("stroke-width", 1.5);
+    //node.attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
 
 
 function dragstarted(event) {
