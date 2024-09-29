@@ -25,7 +25,8 @@ const node = svg.selectAll("g")
     .data(graph.nodes)
     .enter().append("g")
     .attr("class", "node")
-    .append("circle")
+
+    const circle = svg.selectAll("g").append("circle")
     .attr("r", 3)
     .attr("fill", "#000")
     .attr("stroke", "#fff")
@@ -54,7 +55,7 @@ function ticked() {
         .attr("y2", d => d.target.y);
 
     // Update node positions
-    node
+    circle
         .attr("cx", d => d.x)
         .attr("cy", d => d.y);
 
