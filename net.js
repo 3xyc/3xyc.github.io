@@ -9,7 +9,7 @@ const height = dimension[1];
 const svg = d3.select("#d3svg");
 
 //const hex_net = create_hex_net(12)
-const hex_net = create_hex_ball(2);
+const hex_net = create_hex_ball(0);
 const graph = {"nodes": hex_net["nodes"], "links": hex_net["links"]}
 
 // Create SVG elements for links and nodes
@@ -31,15 +31,18 @@ const node = svg.selectAll("g")
     .attr("stroke", "#fff")
     .attr("stroke-width", 1.5);
 const text = svg.selectAll("g").append("text")
-    .text(function (d) { return d.key; });
+    .text(function (d) {
+        return d.key;
+    });
 
 console.log(node)
 
 const simulation = d3.forceSimulation(graph.nodes)
-    .force("charge", d3.forceManyBody().strength(-30))
+    .force("charge", d3.forceManyBody().strength(-5))
     .force("link", d3.forceLink(graph.links).strength(1).distance(20).iterations(10))
-    //.force("center", d3.forceCenter(20, 40).strength(1))
+    .force("center", d3.forceCenter(200, 400).strength(1))
     .on("tick", ticked);
+console.log(simulation.nodes())
 
 // Update the ticked function to position the nodes and links
 function ticked() {
@@ -55,10 +58,12 @@ function ticked() {
         .attr("cx", d => d.x)
         .attr("cy", d => d.y);
 
-text.attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
+    text.attr("transform", function (d) {
+        return "translate(" + d.x + "," + d.y + ")";
+    });
 }
 
-    //node.attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
+//node.attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
 
 
 function dragstarted(event) {

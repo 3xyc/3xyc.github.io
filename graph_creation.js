@@ -216,37 +216,37 @@ export function create_hex_ball(size) {
             add_edge(String(pos), String(perform_move(pos, "LD")))
         }
         for (let i = 0; i < moves.length; i++) {
+            console.log("perform corner move")
             pos = perform_move(pos, moves[i])
             add_node(String(pos))
             add_edge(String(pos), String(perform_move(pos, moves[(i + 3) % 6])))
 
             for (let j = 0; j < vertical_move_index; j++) {
-                console.log("perform middle moves")
-                pos = perform_move(pos, (moves[(i + 1)% 6]))
+                console.log("perform edge moves")
+                pos = perform_move(pos, (moves[(i + 1) % 6]))
                 add_node(String(pos))
                 add_edge(String(pos), String(perform_move(pos, moves[(i + 1 + 3) % 6])))
-                // add edges to previously generate nodes
-                add_edge(String(pos))
 
+                // add edges to previously generate nodes
+                add_edge(String(pos), String(perform_move(pos, moves[(i + 1 + 1) % 6])))
 
                 pos = perform_move(pos, (moves[i]))
                 add_node(String(pos))
                 add_edge(String(pos), String(perform_move(pos, moves[(i + 3) % 6])))
             }
         }
+
         vertical_move_index++;
-        pos = perform_move(pos, "UU")
-        add_node(String(pos))
-        add_edge(String(pos), String(perform_move(pos, "DD")))
-        pos = perform_move(pos, "RU")
-
-
-
-        if (vertical_move_index > 1) {
+        if (vertical_move_index > size) {
             running = false;
+        } else {
+            pos = perform_move(pos, "UU")
+            add_node(String(pos))
+            add_edge(String(pos), String(perform_move(pos, "DD")))
+            pos = perform_move(pos, "RU")
         }
     }
-
+    console.log(nodes)
     return {"links": links, "nodes": nodes}
 }
 
