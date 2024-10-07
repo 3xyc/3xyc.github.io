@@ -9,7 +9,7 @@ const height = dimension[1];
 const svg = d3.select("#d3svg");
 
 //const hex_net = create_hex_net(12)
-const hex_net = create_hex_ball(0);
+const hex_net = create_hex_ball(12);
 const graph = {"nodes": hex_net["nodes"], "links": hex_net["links"]}
 
 // Create SVG elements for links and nodes
@@ -33,7 +33,7 @@ const node = svg.selectAll("g")
     .attr("stroke-width", 1.5);
 const text = svg.selectAll("g").append("text")
     .text(function (d) {
-        return d.key;
+        return d.label;
     });
 
 console.log(node)
@@ -41,7 +41,7 @@ console.log(node)
 const simulation = d3.forceSimulation(graph.nodes)
     .force("charge", d3.forceManyBody().strength(-5))
     .force("link", d3.forceLink(graph.links).strength(1).distance(20).iterations(10))
-    .force("center", d3.forceCenter(200, 400).strength(1))
+    .force("center", d3.forceCenter(300, 300).strength(1))
     .on("tick", ticked);
 console.log(simulation.nodes())
 
